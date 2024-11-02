@@ -1,13 +1,5 @@
 from fastapi import FastAPI
 from enum import Enum # 리스트를 딕셔너리처럼 집합으로 만들어줌 >> 직관적임
-from pydantic import BaseModel # 데이터 유효성 검사, 타입 힌트 강제, 오토캐스팅, 코드 간결화
-
-
-class Item(BaseModel): 
-    name : str
-    desc : str | None = None
-    price : float
-    tax : float | None = None
 
 class ModelName(str, Enum):
     alexnet = "alexnet"
@@ -23,7 +15,7 @@ async def root():
     return {"message": "INGYUWORLD HI"}
 
 @app.post("/items/")
-async def create_item(item : Item):
+async def create_item(item : None):
     return item
 
 @app.get("/user/{user_id}")
